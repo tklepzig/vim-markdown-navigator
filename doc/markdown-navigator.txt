@@ -1,0 +1,148 @@
+*markdown-navigator.txt*                                           Version 1.0.0
+
+  __  __            _       _                                         ~
+ |  \/  |          | |     | |                                        ~
+ | \  / | __ _ _ __| | ____| | _____      ___ __                     ~
+ | |\/| |/ _` | '__| |/ / _` |/ _ \ \ /\ / / '_ \                   ~
+ | |  | | (_| | |  |   < (_| | (_) \ V  V /| | | |                  ~
+ |_|  |_|\__,_|_|  |_|\_\__,_|\___/ \_/\_/ |_| |_|                  ~
+  _   _             _             _                                   ~
+ | \ | |           (_)           | |                                  ~
+ |  \| | __ ___   ___  __ _  __ _| |_ ___  _ __                      ~
+ | . ` |/ _` \ \ / / |/ _` |/ _` | __/ _ \| '__|                    ~
+ | |\  | (_| |\ V /| | (_| | (_| | || (_) | |                        ~
+ |_| \_|\__,_| \_/ |_|\__, |\__,_|\__\___/|_|                        ~
+                        __/ |                                         ~
+                       |___/                                          ~
+
+Markdown Navigator    *markdown-navigator* *vim-markdown-navigator*
+
+Navigate the heading structure of the current markdown file in a sidebar.
+
+===============================================================================
+CONTENTS
+
+    Usage..................................|markdown-navigator-usage|
+        Commands...........................|markdown-navigator-commands|
+        Mappings...........................|markdown-navigator-mappings|
+        Global Mappings....................|markdown-navigator-global-mappings|
+    Customization..........................|markdown-navigator-customization|
+        Variables..........................|markdown-navigator-variables|
+        Highlight Groups...................|markdown-navigator-highlight-groups|
+    License................................|markdown-navigator-license|
+    Credits................................|markdown-navigator-credits|
+
+
+===============================================================================
+Usage                                                 *markdown-navigator-usage*
+
+The Markdown Navigator displays the heading structure of the current markdown
+file in a sidebar, allowing you to quickly jump to any heading.
+
+All headings are shown indented by their level. You can narrow the view to a
+subtree by setting a root heading, and reset it to see all headings again.
+
+-------------------------------------------------------------------------------
+Commands                                           *markdown-navigator-commands*
+
+:MarkdownNavigatorOpen                                 *:MarkdownNavigatorOpen*
+    Open the navigator window if it is not open, otherwise nothing happens.
+
+:MarkdownNavigatorClose                               *:MarkdownNavigatorClose*
+    Close the navigator window if it is open, otherwise nothing happens.
+
+:MarkdownNavigatorToggle                             *:MarkdownNavigatorToggle*
+    Show the navigator window if it is not already open, otherwise close it.
+
+-------------------------------------------------------------------------------
+Mappings                                           *markdown-navigator-mappings*
+
+<CR>......Jump to heading and close the navigator
+o.........Switch to heading without closing the navigator
+p.........Preview heading (cursor stays in the navigator)
+q.........Close the navigator
+z.........Toggle zoom (double the navigator width)
+Z.........Toggle zoom (maximize to full width)
+r.........Refresh the navigator
+c.........Set current heading as root (narrow the view to this subtree)
+R.........Reset root heading (show all headings)
+
+-------------------------------------------------------------------------------
+Global Mappings                             *markdown-navigator-global-mappings*
+
+<leader>t....Toggle the navigator window (works in markdown and navigator buffers)
+
+This can be disabled by setting `g:MarkdownNavigatorMapKeys` to 0.
+
+===============================================================================
+Customization                                *markdown-navigator-customization*
+
+-------------------------------------------------------------------------------
+Variables                                        *markdown-navigator-variables*
+
+let g:MarkdownNavigatorMapKeys                     *g:MarkdownNavigatorMapKeys*
+    Whether to create the |markdown-navigator-global-mappings|.
+    0 - Do not create any global mappings
+    1 - Create the global mappings (Default)
+
+let g:MarkdownNavigatorWidth                         *g:MarkdownNavigatorWidth*
+    Set the width of the navigator window when not zoomed. Default: 40
+
+let g:MarkdownNavigatorAutoClose                   *g:MarkdownNavigatorAutoClose*
+    Automatically close the navigator after jumping to a heading with <CR>.
+    0 - Keep the navigator open
+    1 - Close the navigator (Default)
+
+-------------------------------------------------------------------------------
+Highlight Groups                          *markdown-navigator-highlight-groups*
+
+highlight MarkdownNavigatorH1                           *MarkdownNavigatorH1*
+    Highlight group for level 1 headings (top-level, no indentation).
+
+highlight MarkdownNavigatorH2                           *MarkdownNavigatorH2*
+    Highlight group for level 2 headings.
+
+highlight MarkdownNavigatorH3                           *MarkdownNavigatorH3*
+    Highlight group for level 3 headings.
+
+highlight MarkdownNavigatorH4                           *MarkdownNavigatorH4*
+    Highlight group for level 4 headings.
+
+highlight MarkdownNavigatorH5                           *MarkdownNavigatorH5*
+    Highlight group for level 5 headings.
+
+highlight MarkdownNavigatorH6                           *MarkdownNavigatorH6*
+    Highlight group for level 6 headings (deepest, most indented).
+
+===============================================================================
+License                                            *markdown-navigator-license*
+
+MIT License
+
+Copyright (c) 2026 Thomas Klepzig
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+===============================================================================
+Credits                                            *markdown-navigator-credits*
+
+Author: Thomas Klepzig (https://github.com/tklepzig)
+
+Feedback, feature requests, and bug reports are welcome:
+https://github.com/tklepzig/vim-markdown-navigator/issues
