@@ -177,6 +177,13 @@ augroup MarkdownNavigator
   autocmd FileType markdownnavigator noremap <script> <silent> <nowait> <buffer> c    :call <SID>ChangeRootHeading()<CR>
 
   if get(g:, s:optionMapKeys[0], s:optionMapKeys[1])
-    autocmd FileType markdown,markdownnavigator nnoremap <script> <silent> <nowait> <buffer> <leader>t :MarkdownNavigatorToggle<CR>
+    autocmd FileType markdownnavigator nnoremap <script> <silent> <nowait> <buffer> <leader>t :MarkdownNavigatorToggle<CR>
   endif
 augroup END
+
+" When loaded after a markdown buffer is already open (lazy plugin managers)
+" its FileType has already fired and ftplugin/ missed it
+" —> map the current buffer now
+if get(g:, s:optionMapKeys[0], s:optionMapKeys[1]) && &filetype ==# 'markdown'
+  nnoremap <script> <silent> <nowait> <buffer> <leader>t :MarkdownNavigatorToggle<CR>
+endif
