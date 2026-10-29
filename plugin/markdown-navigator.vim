@@ -1,7 +1,6 @@
 let s:optionAutoClose = ['MarkdownNavigatorAutoClose', 1]
 let s:optionMapKeys = ['MarkdownNavigatorMapKeys', 1]
 let s:optionWindowWidth = ['MarkdownNavigatorWidth', 40]
-let s:optionSearchOnOpen = ['MarkdownNavigatorSearchOnOpen', 0]
 
 let s:bufferName = "markdown-navigator"
 let s:bufferPattern = "^" . s:bufferName . "$"
@@ -105,10 +104,6 @@ function! s:Open()
   setlocal filetype=markdownnavigator
 
   call s:PrintLines(documentLineNr)
-
-  if get(g:, s:optionSearchOnOpen[0], s:optionSearchOnOpen[1])
-    call feedkeys('/', 'n')
-  endif
 endfunction
 
 function! s:Close()
@@ -134,6 +129,17 @@ function! s:Toggle()
   else
     call s:Open()
   endif
+endfunction
+
+function! s:Search()
+  let bufnr = bufnr(s:bufferPattern)
+  if bufnr > 0 && bufexists(bufnr)
+    call win_gotoid(s:navigatorWinId)
+    call s:PrintLines(0)
+  else
+    call s:Open()
+  endif
+  call feedkeys('/', 'n')
 endfunction
 
 function! s:ToggleZoom(mode)
@@ -162,6 +168,7 @@ endfunction
 command! MarkdownNavigatorOpen  :call <SID>Open()
 command! MarkdownNavigatorClose :call <SID>Close()
 command! MarkdownNavigatorToggle :call <SID>Toggle()
+command! MarkdownNavigatorSearch :call <SID>Search()
 
 augroup MarkdownNavigator
   autocmd!
@@ -177,6 +184,7 @@ augroup MarkdownNavigator
 
   if get(g:, s:optionMapKeys[0], s:optionMapKeys[1])
     autocmd FileType markdownnavigator nnoremap <script> <silent> <nowait> <buffer> <leader>t :MarkdownNavigatorToggle<CR>
+    autocmd FileType markdownnavigator nnoremap <script> <silent> <nowait> <buffer> <leader>T :MarkdownNavigatorSearch<CR>
   endif
 augroup END
 
@@ -185,4 +193,5 @@ augroup END
 " —> map the current buffer now
 if get(g:, s:optionMapKeys[0], s:optionMapKeys[1]) && &filetype ==# 'markdown'
   nnoremap <script> <silent> <nowait> <buffer> <leader>t :MarkdownNavigatorToggle<CR>
+  nnoremap <script> <silent> <nowait> <buffer> <leader>T :MarkdownNavigatorSearch<CR>
 endif

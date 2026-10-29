@@ -54,6 +54,11 @@ Commands                                           *markdown-navigator-commands*
 :MarkdownNavigatorToggle                             *:MarkdownNavigatorToggle*
     Show the navigator window if it is not already open, otherwise close it.
 
+:MarkdownNavigatorSearch                             *:MarkdownNavigatorSearch*
+    Open or focus the navigator window and start a search (/) in it, to jump
+    straight to a heading by typing part of its title. Press <CR> to confirm
+    the search, then <CR> again to jump to the heading.
+
 -------------------------------------------------------------------------------
 Mappings                                           *markdown-navigator-mappings*
 
@@ -71,8 +76,9 @@ R.........Reset root heading (show all headings)
 Global Mappings                             *markdown-navigator-global-mappings*
 
 <leader>t....Toggle the navigator window (works in markdown and navigator buffers)
+<leader>T....Open the navigator and start a search (|:MarkdownNavigatorSearch|)
 
-This can be disabled by setting `g:MarkdownNavigatorMapKeys` to 0.
+These can be disabled by setting `g:MarkdownNavigatorMapKeys` to 0.
 
 ===============================================================================
 Customization                                *markdown-navigator-customization*
@@ -92,13 +98,6 @@ let g:MarkdownNavigatorAutoClose                   *g:MarkdownNavigatorAutoClose
     Automatically close the navigator after jumping to a heading with <CR>.
     0 - Keep the navigator open
     1 - Close the navigator (Default)
-
-let g:MarkdownNavigatorSearchOnOpen           *g:MarkdownNavigatorSearchOnOpen*
-    Start a search (/) in the navigator when it opens, to jump straight to a
-    heading by typing part of its title. Press <CR> to confirm the search,
-    then <CR> again to jump to the heading.
-    0 - Do not start a search (Default)
-    1 - Start a search
 
 -------------------------------------------------------------------------------
 Highlight Groups                          *markdown-navigator-highlight-groups*
