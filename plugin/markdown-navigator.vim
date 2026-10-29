@@ -4,6 +4,7 @@ let s:optionWindowWidth = ['MarkdownNavigatorWidth', 40]
 let s:optionSearchOnOpen = ['MarkdownNavigatorSearchOnOpen', 0]
 
 let s:bufferName = "markdown-navigator"
+let s:bufferPattern = "^" . s:bufferName . "$"
 let s:headingLineMapping = {}
 let s:currentRootHeading = [-1, 0]
 
@@ -94,7 +95,7 @@ function! s:PrintLines(documentLineNr)
 endfunction
 
 function! s:Open()
-  let bufnr = bufnr(s:bufferName)
+  let bufnr = bufnr(s:bufferPattern)
   if bufnr > 0 && bufexists(bufnr)
     return
   endif
@@ -118,7 +119,7 @@ function! s:Open()
 endfunction
 
 function! s:Close()
-  let bufnr = bufnr(s:bufferName)
+  let bufnr = bufnr(s:bufferPattern)
   if bufnr > 0 && bufexists(bufnr)
     if s:documentWinId > 0
       call win_gotoid(s:documentWinId)
@@ -128,7 +129,7 @@ function! s:Close()
 endfunction
 
 function! s:Toggle()
-  let bufnr = bufnr(s:bufferName)
+  let bufnr = bufnr(s:bufferPattern)
   if bufnr > 0 && bufexists(bufnr)
     if win_getid() != s:navigatorWinId
       " Navigator window exists but is not active — switch to it
