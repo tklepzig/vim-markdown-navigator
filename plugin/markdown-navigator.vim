@@ -12,22 +12,15 @@ let s:documentBufferNr = -1
 let s:documentWinId = -1
 let s:navigatorWinId = -1
 
+function! s:ParseHeading(lineNr, line)
+  let [_, level, title; _] = matchlist(a:line, '\v^(#+)\s*(.*)$')
+  return [a:lineNr, len(level), title]
+endfunction
+
 function! s:BuildHeadings()
-  let headings = []
-
-  call win_gotoid(s:documentWinId)
-  let view = winsaveview()
-
-  let matches = execute('g/\v^#')
-  for matchLine in split(matches, '\n')
-    let [_, lineNr, level, title; _] = matchlist(matchLine, '\v^\s*(\d+)\s*(#+)\s*(.*)$')
-    call add(headings, [str2nr(lineNr), len(level), title])
-  endfor
-
-  call winrestview(view)
-  call win_gotoid(s:navigatorWinId)
-
-  return headings
+  let lines = getbufline(s:documentBufferNr, 1, '$')
+  let headingIndexes = filter(range(len(lines)), {_, index -> lines[index] =~# '\v^#'})
+  return map(headingIndexes, {_, index -> s:ParseHeading(index + 1, lines[index])})
 endfunction
 
 function! s:HeadingLineNrFromCurrentLine()
