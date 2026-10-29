@@ -1,6 +1,7 @@
 let s:optionAutoClose = ['MarkdownNavigatorAutoClose', 1]
 let s:optionMapKeys = ['MarkdownNavigatorMapKeys', 1]
 let s:optionWindowWidth = ['MarkdownNavigatorWidth', 40]
+let s:optionSearchOnOpen = ['MarkdownNavigatorSearchOnOpen', 0]
 
 let s:bufferName = "markdown-navigator"
 let s:headingLineMapping = {}
@@ -110,6 +111,10 @@ function! s:Open()
   setlocal filetype=markdownnavigator
 
   call s:PrintLines(documentLineNr)
+
+  if get(g:, s:optionSearchOnOpen[0], s:optionSearchOnOpen[1])
+    call feedkeys('/', 'n')
+  endif
 endfunction
 
 function! s:Close()

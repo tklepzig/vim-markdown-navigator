@@ -93,6 +93,13 @@ let g:MarkdownNavigatorAutoClose                   *g:MarkdownNavigatorAutoClose
     0 - Keep the navigator open
     1 - Close the navigator (Default)
 
+let g:MarkdownNavigatorSearchOnOpen           *g:MarkdownNavigatorSearchOnOpen*
+    Start a search (/) in the navigator when it opens, to jump straight to a
+    heading by typing part of its title. Press <CR> to confirm the search,
+    then <CR> again to jump to the heading.
+    0 - Do not start a search (Default)
+    1 - Start a search
+
 -------------------------------------------------------------------------------
 Highlight Groups                          *markdown-navigator-highlight-groups*
 
